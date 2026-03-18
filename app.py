@@ -4,7 +4,7 @@ import bcrypt
 import os
 
 app = Flask(__name__)
-app.secret_key = "khoa_bi_mat_123"  # dùng để mã hóa session
+app.secret_key = os.environ.get("SECRET_KEY", "khoa_bi_mat_123")  # dùng để mã hóa session
 
 # ============ DATABASE ============
 def get_db():
@@ -135,8 +135,8 @@ def xoa(id):
     conn.commit()
     conn.close()
     return redirect(url_for("trang_chu"))
-app.secret_key = "khoa_bi_mat_123"
 
+init_db()
 if __name__ == "__main__":
-    init_db()
+    
     app.run(debug=True)
