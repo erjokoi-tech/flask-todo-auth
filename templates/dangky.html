@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2 style="margin-bottom:20px;color:#185FA5">Đăng ký</h2>
+    <form method="POST">
+        <label>Họ tên</label>
+        <input type="text" name="ten" placeholder="Lê Văn Dương" required>
+        <label>Email</label>
+        <input type="email" name="email" placeholder="email@gmail.com" required>
+        <label>Mật khẩu</label>
+        <input type="password" name="mat_khau" placeholder="Tối thiểu 6 ký tự" required>
+        <button class="btn btn-blue" type="submit">Đăng ký</button>
+    </form>
+    <p style="margin-top:16px;font-size:13px;text-align:center">
+        Đã có tài khoản? <a class="link" href="/dang-nhap">Đăng nhập</a>
+    </p>
+</div>
+{% endblock %}

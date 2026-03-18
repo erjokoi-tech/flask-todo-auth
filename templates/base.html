@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <style>
+        *{ box-sizing: border-box; margin: 0; padding: 0; }
+        body{ font-family: Arial, sans-serif; background: #f5f5f5; }
+        .navbar{ background: #185FA5; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .navbar a{ color: white; text-decoration: none; font-size: 14px; margin-left: 16px; }
+        .navbar .brand{ color: white; font-weight: 500; font-size: 16px; }
+        .container{ max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        .card{ background: white; border-radius: 10px; padding: 24px; margin-bottom: 16px; }
+        input{ width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 12px; }
+        .btn{ padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
+        .btn-blue{ background: #185FA5; color: white; width: 100%; }
+        .btn-red{ background: #E24B4A; color: white; }
+        .btn-green{ background: #1D9E75; color: white; }
+        .alert{ padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; font-size: 13px; }
+        .alert.success{ background: #E1F5EE; color: #0F6E56; }
+        .alert.error{ background: #FCEBEB; color: #A32D2D; }
+        .viec{ display: flex; align-items: center; gap: 8px; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .viec .ten{ flex: 1; font-size: 14px; }
+        .link{ color: #185FA5; text-decoration: none; font-size: 14px; }
+        label{ font-size: 13px; color: #666; display: block; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    {% if session.user_id %}
+    <div class="navbar">
+        <span class="brand">Todo App</span>
+        <div>
+            <span style="color:white;font-size:13px">Xin chào, {{ session.ten }}</span>
+            <a href="/dang-xuat">Đăng xuất</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
